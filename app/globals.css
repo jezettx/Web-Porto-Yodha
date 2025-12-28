@@ -1,11 +1,41 @@
+/* app/globals.css */
 @import "tailwindcss";
+
+/* CHANGE: taruh “theme vars” biar warna konsisten di semua komponen */
+:root{
+  --bg: 10 34 68;            /* sama dengan colors.bg */
+  --accent: 36 150 237;
+  --accentHover: 28 128 214;
+}
 
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  background: radial-gradient(1200px 600px at 30% 10%, rgba(59,130,246,0.18), transparent 60%),
-              radial-gradient(900px 500px at 80% 20%, rgba(14,165,233,0.12), transparent 55%),
-              rgb(10, 18, 40);
+  /* CHANGE: background pakai var + glow lebih halus & konsisten */
+  background:
+    radial-gradient(1200px 600px at 30% 10%, rgba(59,130,246,0.16), transparent 60%),
+    radial-gradient(900px 500px at 80% 20%, rgba(14,165,233,0.10), transparent 55%),
+    rgb(var(--bg));
+}
+
+/* CHANGE: komponen util buat tombol pill biar WhatsApp & Email “rasa”-nya sama */
+@layer components {
+  .btn-pill {
+    @apply inline-flex items-center justify-center rounded-full
+      border border-white/10 bg-white/5
+      px-5 py-2 text-sm font-medium text-white/85
+      transition
+      hover:bg-white/10
+      active:bg-white/15
+      focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30;
+  }
+
+  .btn-accent {
+    background: rgb(var(--accent));
+  }
+  .btn-accent:hover {
+    background: rgb(var(--accentHover));
+  }
 }

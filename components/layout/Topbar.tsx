@@ -1,9 +1,9 @@
 // components/layout/Topbar.tsx
 "use client";
 
+import Link from "next/link"; // CHANGE
 import { useState } from "react";
 import { usePathname } from "next/navigation";
-import { colors } from "@/lib/colors";
 
 const links = [
   { href: "/", label: "Home" },
@@ -23,18 +23,21 @@ export default function Topbar() {
 
   return (
     <div
-      className="sticky top-0 z-40 backdrop-blur"
+      // CHANGE: inline style dibuang, pakai css var dari globals.css
+      className="
+        sticky top-0 z-40 backdrop-blur
+        border-b border-white/10
+        bg-[rgb(var(--bg)/0.86)]
+        shadow-[0_6px_18px_rgba(0,0,0,0.18)]
+      "
       style={{
-        backgroundColor: `rgba(${colors.bg}, 0.86)`,
+        // CHANGE: gradient tipis, tapi masih aman (tetap inline kecil)
         backgroundImage:
           "linear-gradient(180deg, rgba(36,150,237,0.09) 0%, rgba(36,150,237,0.03) 55%, rgba(0,0,0,0) 100%)",
-        borderBottom: "1px solid rgba(255,255,255,0.07)",
-        boxShadow: "0 6px 18px rgba(0,0,0,0.18)",
       }}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:px-6">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 md:px-6">
         <div className="flex items-center gap-3">
-          {/* mobile menu button */}
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
@@ -45,74 +48,61 @@ export default function Topbar() {
             ☰
           </button>
 
-          <p className="text-sm font-semibold tracking-wide text-white">
+          <Link href="/" className="text-sm font-semibold tracking-wide text-white">
             YODHA.
-          </p>
+          </Link>
         </div>
 
-        {/* desktop nav */}
         <nav className="hidden items-center gap-6 md:flex">
           {links.map((l) => {
             const active = isActive(pathname, l.href);
             return (
-              <a
+              <Link
                 key={l.href}
                 href={l.href}
-                className="text-sm transition"
-                style={{
-                  color: active ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.70)",
-                  borderBottom: active ? `2px solid rgb(${colors.accent.base})` : "2px solid transparent",
-                  paddingBottom: 6,
-                }}
+                className={[
+                  "text-sm transition pb-1",
+                  active ? "text-white" : "text-white/70 hover:text-white/90",
+                  // CHANGE: underline pakai accent var
+                  active ? "border-b-2 border-[rgb(var(--accent))]" : "border-b-2 border-transparent",
+                ].join(" ")}
               >
                 {l.label}
-              </a>
+              </Link>
             );
           })}
         </nav>
 
-        <a
+        {/* CHANGE: tombol accent tanpa onMouseEnter */}
+        <Link
           href="/contact"
-          className="rounded-full px-5 py-2 text-sm font-semibold text-white shadow-sm transition"
-          style={{ backgroundColor: `rgb(${colors.accent.base})` }}
-          onMouseEnter={(e) => {
-            (e.currentTarget as HTMLAnchorElement).style.backgroundColor = `rgb(${colors.accent.hover})`;
-          }}
-          onMouseLeave={(e) => {
-            (e.currentTarget as HTMLAnchorElement).style.backgroundColor = `rgb(${colors.accent.base})`;
-          }}
+          className="rounded-full px-5 py-2 text-sm font-semibold text-white shadow-sm transition btn-accent"
         >
           Hire / Collab
-        </a>
+        </Link>
       </div>
 
-      {/* mobile dropdown */}
       {open ? (
         <div className="md:hidden px-4 pb-4">
-          <div className="rounded-2xl border border-white/10 bg-white/4 backdrop-blur">
+          <div className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur">
             <div className="p-2">
               {links.map((l) => {
                 const active = isActive(pathname, l.href);
                 return (
-                  <a
+                  <Link
                     key={l.href}
                     href={l.href}
                     onClick={() => setOpen(false)}
-                    className="flex items-center justify-between rounded-xl px-3 py-2 text-sm transition hover:bg-white/5"
-                    style={{
-                      color: active ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.75)",
-                    }}
+                    className={[
+                      "flex items-center justify-between rounded-xl px-3 py-2 text-sm transition hover:bg-white/5",
+                      active ? "text-white" : "text-white/75",
+                    ].join(" ")}
                   >
                     <span>{l.label}</span>
                     {active ? (
-                      <span
-                        className="text-xs font-semibold"
-                        style={{ color: `rgb(${colors.accent.base})` }}
-                      >
-                        ●
-                      </span>
+                      <span className="text-xs font-semibold text-[rgb(var(--accent))]">●</span>
                     ) : null}
-                  </a>
+                  </Link>
                 );
               })}
             </div>
@@ -122,3 +112,6 @@ export default function Topbar() {
     </div>
   );
 }
+// CHANGE: inline style dibuang, pakai css var dari globals.css
+// CHANGE: gradient tipis, tapi masih aman (tetap inline kecil)
+// CHANGE: tombol accent tanpa onMouseEnter

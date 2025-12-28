@@ -11,6 +11,8 @@ export const projects = [
       "Improved operational clarity for event-day execution and customer handling",
     ],
 
+    href: "/projects/xiore-cosrent",
+
     links: {
       demo: null,
       github: null,
@@ -28,6 +30,8 @@ export const projects = [
       "Implemented reliable cross-device alarm triggering mechanism",
       "Focused on delivery reliability and system behavior over UI complexity",
     ],
+
+    href: "/projects/remote-alarm",
 
     links: {
       demo: null,

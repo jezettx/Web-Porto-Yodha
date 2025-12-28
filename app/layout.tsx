@@ -1,3 +1,4 @@
+// app/layout.tsx
 import "./globals.css";
 import AppShell from "@/components/layout/AppShell";
 
@@ -9,7 +10,8 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="id">
-      <body className="min-h-screen bg-[#070b1a] text-white">
+      {/* CHANGE: hapus bg hardcode; background di-handle globals.css biar konsisten */}
+      <body className="min-h-screen text-white antialiased">
         <AppShell>{children}</AppShell>
       </body>
     </html>

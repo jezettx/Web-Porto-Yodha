@@ -1,6 +1,6 @@
 // components/sections/ProjectsPreviewSection.tsx
+import Link from "next/link"; // CHANGE
 import Card from "@/components/ui/Card";
-import { colors } from "@/lib/colors";
 
 type Project = {
   type: "business system" | "software";
@@ -16,7 +16,7 @@ const projects: Project[] = [
     title: "Xiore Cosrent — Rental Operations & Customer Flow",
     desc: "Built the operating system for a costume rental: catalog, booking, QC, delivery, and customer handling.",
     tags: ["operations", "customer flow", "fulfillment"],
-    href: "/projects/xiore",
+    href: "/projects/xiore-cosrent", // CHANGE: fix route (sebelumnya /projects/xiore)
   },
   {
     type: "software",
@@ -46,15 +46,18 @@ function TypeLabel({ type }: { type: Project["type"] }) {
 export default function ProjectsPreviewSection() {
   return (
     <div className="space-y-8">
-      {/* section label */}
       <p className="text-center text-[11px] font-semibold uppercase tracking-[0.28em] text-white/40">
         Selected projects where these principles were applied
       </p>
 
-      {/* projects */}
       <div className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-6">
         {projects.map((p) => (
-          <a key={p.title} href={p.href} className="group block">
+          <Link
+            key={p.title}
+            href={p.href}
+            className="group block rounded-3xl focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30"
+          >
+            {/* CHANGE: hover “ngangkat” udah ditangani Card hover */}
             <Card className="h-full p-6 md:p-7" hover>
               <div className="flex items-start justify-between gap-3">
                 <div className="min-w-0">
@@ -64,10 +67,7 @@ export default function ProjectsPreviewSection() {
                   </h3>
                 </div>
 
-                <span
-                  className="shrink-0 text-sm font-medium transition-transform group-hover:translate-x-1"
-                  style={{ color: `rgb(${colors.accent.base})` }}
-                >
+                <span className="shrink-0 text-sm font-medium text-[rgb(var(--accent))] transition-transform group-hover:translate-x-1">
                   →
                 </span>
               </div>
@@ -82,35 +82,39 @@ export default function ProjectsPreviewSection() {
                 ))}
               </div>
             </Card>
-          </a>
+          </Link>
         ))}
       </div>
 
-      {/* CTA row */}
       <div className="pt-4">
         <div className="grid w-full max-w-3xl grid-cols-1 gap-3 sm:mx-auto sm:grid-cols-3 sm:items-center">
-          <a
+          <Link
             href="/experience"
             className="order-2 inline-flex items-center justify-center rounded-xl px-6 py-3 text-sm font-medium text-white/70 transition hover:bg-white/5 hover:text-white sm:order-1"
           >
             Experience &amp; Roles
-          </a>
+          </Link>
 
-          <a
+          <Link
             href="/projects"
             className="order-1 inline-flex w-full items-center justify-center rounded-xl border border-white/10 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10 sm:order-2"
           >
             Explore Projects
-          </a>
+          </Link>
 
-          <a
+          <Link
             href="/contact"
             className="order-3 inline-flex items-center justify-center rounded-xl px-6 py-3 text-sm font-medium text-white/70 transition hover:bg-white/5 hover:text-white"
           >
             Get in Touch
-          </a>
+          </Link>
         </div>
       </div>
     </div>
   );
 }
+// CHANGE: Link pakai next/link
+// CHANGE: Card hover handling di dalam Card component
+// CHANGE: perbaikan route Xiore Cosrent
+// CHANGE: tombol bawah pake border & bg varian white/10
+// CHANGE: penambahan tombol Get in Touch

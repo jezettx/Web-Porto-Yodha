@@ -11,7 +11,7 @@ export default function ContactSection() {
                         WhatsApp
                     </a>
                     <a
-                        href="mailto:yourname@email.com"
+                        href="mailto:mcpeyodha@gmail.com"
                         className="rounded-full border border-white/15 bg-white/5 px-5 py-2 text-sm font-medium text-white/90 hover:bg-white/10"
                     >
                         Email

@@ -6,7 +6,7 @@ export default function ProjectsPage() {
     <>
       <PageHeader
         title="Selected Projects"
-        desc="A curated set of systems I’ve built — focused on clarity, flow, and real-world delivery."
+        desc="A curated set of systems I’ve built. Focused on clarity, flow, and real-world delivery."
         align="center"
       />
       <ProjectsSection />

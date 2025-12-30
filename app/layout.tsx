@@ -9,7 +9,7 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="id">
+    <html lang="id" data-scroll-behavior="smooth">
       {/* CHANGE: hapus bg hardcode; background di-handle globals.css biar konsisten */}
       <body className="min-h-screen text-white antialiased">
         <AppShell>{children}</AppShell>

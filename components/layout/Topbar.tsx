@@ -78,7 +78,7 @@ export default function Topbar() {
           href="/contact"
           className="rounded-full px-5 py-2 text-sm font-semibold text-white shadow-sm transition btn-accent"
         >
-          Hire / Collab
+          Let’s talk
         </Link>
       </div>
 

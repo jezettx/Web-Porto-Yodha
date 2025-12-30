@@ -1,5 +1,5 @@
 // components/sections/ProjectsPreviewSection.tsx
-import Link from "next/link"; // CHANGE
+import Link from "next/link";
 import Card from "@/components/ui/Card";
 
 type Project = {
@@ -13,10 +13,10 @@ type Project = {
 const projects: Project[] = [
   {
     type: "business system",
-    title: "Xiore Cosrent — Rental Operations & Customer Flow",
+    title: "Xiore Cosrent Cosplay Rental Platform",
     desc: "Built the operating system for a costume rental: catalog, booking, QC, delivery, and customer handling.",
     tags: ["operations", "customer flow", "fulfillment"],
-    href: "/projects/xiore-cosrent", // CHANGE: fix route (sebelumnya /projects/xiore)
+    href: "/projects/xiore-cosrent",
   },
   {
     type: "software",
@@ -27,18 +27,23 @@ const projects: Project[] = [
   },
 ];
 
-function Tag({ children }: { children: string }) {
+// CHANGE: type label dibuat lebih subtle (bukan badge)
+function TypeLabel({ type }: { type: Project["type"] }) {
   return (
-    <span className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] font-medium text-white/70">
-      {children}
-    </span>
+    <div className="flex items-center gap-3">
+      <span className="h-px w-8 bg-white/20" />
+      <span className="text-[11px] uppercase tracking-[0.22em] text-white/50">
+        {type}
+      </span>
+    </div>
   );
 }
 
-function TypeLabel({ type }: { type: Project["type"] }) {
+// CHANGE: tag BUKAN pill/badge, tapi context metadata
+function MetaTag({ children }: { children: string }) {
   return (
-    <span className="text-[11px] font-semibold uppercase tracking-widest text-white/40">
-      {type}
+    <span className="text-[11px] text-white/55">
+      {children}
     </span>
   );
 }
@@ -46,6 +51,7 @@ function TypeLabel({ type }: { type: Project["type"] }) {
 export default function ProjectsPreviewSection() {
   return (
     <div className="space-y-8">
+      {/* CHANGE: heading kecil tetap */}
       <p className="text-center text-[11px] font-semibold uppercase tracking-[0.28em] text-white/40">
         Selected projects where these principles were applied
       </p>
@@ -57,35 +63,44 @@ export default function ProjectsPreviewSection() {
             href={p.href}
             className="group block rounded-3xl focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30"
           >
-            {/* CHANGE: hover “ngangkat” udah ditangani Card hover */}
-            <Card className="h-full p-6 md:p-7" hover>
-              <div className="flex items-start justify-between gap-3">
-                <div className="min-w-0">
-                  <TypeLabel type={p.type} />
-                  <h3 className="mt-2 text-base font-semibold leading-snug text-white md:text-lg">
-                    {p.title}
-                  </h3>
+            <Card hover className="h-full p-6 md:p-7">
+              <div className="flex h-full flex-col">
+                
+                {/* HEADER */}
+                <div className="flex items-start justify-between gap-3">
+                  <div className="min-w-0 space-y-2">
+                    <TypeLabel type={p.type} />
+
+                    <h3 className="text-base font-semibold leading-snug text-white md:text-lg">
+                      {p.title}
+                    </h3>
+                  </div>
+
+                  {/* CHANGE: arrow jadi secondary hint */}
+                  <span className="shrink-0 text-sm font-medium text-white/40 transition-transform group-hover:translate-x-1">
+                    →
+                  </span>
                 </div>
 
-                <span className="shrink-0 text-sm font-medium text-[rgb(var(--accent))] transition-transform group-hover:translate-x-1">
-                  →
-                </span>
-              </div>
+                {/* DESC */}
+                <p className="mt-3 text-sm leading-relaxed text-white/65 md:text-[15px]">
+                  {p.desc}
+                </p>
 
-              <p className="mt-3 text-sm leading-relaxed text-white/60 md:text-[15px]">
-                {p.desc}
-              </p>
-
-              <div className="mt-4 flex flex-wrap gap-2">
-                {p.tags.map((t) => (
-                  <Tag key={t}>{t}</Tag>
-                ))}
+                {/* TAGS */}
+                {/* CHANGE: tags ditaruh sebagai metadata, bukan badge */}
+                <div className="mt-4 flex flex-wrap gap-x-4 gap-y-1">
+                  {p.tags.map((t) => (
+                    <MetaTag key={t}>{t}</MetaTag>
+                  ))}
+                </div>
               </div>
             </Card>
           </Link>
         ))}
       </div>
 
+      {/* FOOTER CTA */}
       <div className="pt-4">
         <div className="grid w-full max-w-3xl grid-cols-1 gap-3 sm:mx-auto sm:grid-cols-3 sm:items-center">
           <Link
@@ -113,8 +128,4 @@ export default function ProjectsPreviewSection() {
     </div>
   );
 }
-// CHANGE: Link pakai next/link
-// CHANGE: Card hover handling di dalam Card component
-// CHANGE: perbaikan route Xiore Cosrent
-// CHANGE: tombol bawah pake border & bg varian white/10
-// CHANGE: penambahan tombol Get in Touch
+// CHANGE: Link pakai next/link untuk konsisten

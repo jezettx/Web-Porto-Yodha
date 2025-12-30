@@ -12,11 +12,11 @@ export default function Card({ className, hover, children }: Props) {
   return (
     <div
       className={cx(
-        // CHANGE: border dibuat lebih soft biar gak keliatan “garis putih”
+        // CHANGE: base card lebih soft & bersih
         "rounded-2xl border backdrop-blur",
         `border-[rgb(${colors.borderSoft})] bg-[rgb(${colors.surface.base})]`,
 
-        // CHANGE: hover juga sekalian ngangkat + shadow halus (biar kerasa clickable)
+        // CHANGE: hover behavior natural (angkat dikit, shadow dalam)
         hover &&
           [
             "transition-all duration-200 ease-out",
@@ -33,3 +33,4 @@ export default function Card({ className, hover, children }: Props) {
     </div>
   );
 }
+// CHANGE: hover effect ditingkatkan untuk UX lebih baik

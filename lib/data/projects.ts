@@ -1,7 +1,7 @@
 export const projects = [
   {
-    title: "Xiore Cosrent – Rent Cosplay Platform",
-    tag: "Rentalan",
+    title: "Xiore Cosrent Cosplay Rental Platform",
+    tag: "Business System",
     summary:
       "A rental management system that connects cosplay communities, events, and customers across multiple cities.",
 
@@ -21,7 +21,7 @@ export const projects = [
 
   {
     title: "Remote Alarm System",
-    tag: "Android Projects",
+    tag: "Mobile App",
     summary:
       "A personal alarm system designed to reliably trigger alarms even when the Android app is killed.",
 

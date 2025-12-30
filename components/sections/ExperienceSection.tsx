@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link"; // CHANGE
 import { useState } from "react";
 import Card from "@/components/ui/Card";
 import { experienceCategories } from "@/lib/data/experience";
@@ -34,6 +35,7 @@ export default function ExperienceSection() {
           })}
         </div>
       </div>
+
       <div className="grid gap-4 md:grid-cols-[260px_1fr]">
         {/* SIDEBAR */}
         <Card className="hidden p-3 md:block">
@@ -67,6 +69,24 @@ export default function ExperienceSection() {
 
         {/* CONTENT */}
         <Card className="p-6">
+          {/* HEADER + CTA (ala Stevan, tapi kontekstual) */}
+          <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+            <div className="text-sm font-medium text-white">
+              {current.title}
+            </div>
+
+            <Link
+              href="/experience/technologies"
+              className="
+                inline-flex items-center gap-2
+                rounded-xl border border-white/10 bg-white/5
+                px-4 py-2 text-xs text-white/75
+                transition hover:bg-white/10 hover:text-white
+              "
+            >
+              Technologies &amp; Tools →
+            </Link>
+          </div>
 
           <ul className="space-y-2 text-sm text-white/75">
             {current.items.map((item) => (
@@ -74,9 +94,15 @@ export default function ExperienceSection() {
                 key={`${item.title}-${item.meta}`}
                 className="rounded-lg border border-white/10 bg-white/5 px-3 py-3"
               >
-                <div className="text-sm font-medium text-white">{item.title}</div>
-                <div className="mt-0.5 text-xs text-white/60">{item.meta}</div>
-                <div className="mt-1 text-sm text-white/75">{item.desc}</div>
+                <div className="text-sm font-medium text-white">
+                  {item.title}
+                </div>
+                <div className="mt-0.5 text-xs text-white/60">
+                  {item.meta}
+                </div>
+                <div className="mt-1 text-sm text-white/75">
+                  {item.desc}
+                </div>
               </li>
             ))}
           </ul>
@@ -85,3 +111,4 @@ export default function ExperienceSection() {
     </section>
   );
 }
+// CHANGE: Link pakai next/link untuk konsisten

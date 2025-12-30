@@ -12,7 +12,7 @@ const heroCards = [
     label: "Approach",
     title: "Systems That Hold",
     desc:
-      "I design systems for real conditions — messy workflows, handoffs, human limits, and operational pressure.\n" +
+      "I design systems for real conditions, messy workflows, handoffs, human limits, and operational pressure.\n" +
       "Not demos. Not ideal cases. Systems that actually work.",
   },
   {

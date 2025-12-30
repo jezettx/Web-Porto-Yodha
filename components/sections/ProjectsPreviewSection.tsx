@@ -31,7 +31,6 @@ const projects: Project[] = [
 function TypeLabel({ type }: { type: Project["type"] }) {
   return (
     <div className="flex items-center gap-3">
-      <span className="h-px w-8 bg-white/20" />
       <span className="text-[11px] uppercase tracking-[0.22em] text-white/50">
         {type}
       </span>
@@ -98,32 +97,6 @@ export default function ProjectsPreviewSection() {
             </Card>
           </Link>
         ))}
-      </div>
-
-      {/* FOOTER CTA */}
-      <div className="pt-4">
-        <div className="grid w-full max-w-3xl grid-cols-1 gap-3 sm:mx-auto sm:grid-cols-3 sm:items-center">
-          <Link
-            href="/experience"
-            className="order-2 inline-flex items-center justify-center rounded-xl px-6 py-3 text-sm font-medium text-white/70 transition hover:bg-white/5 hover:text-white sm:order-1"
-          >
-            Experience &amp; Roles
-          </Link>
-
-          <Link
-            href="/projects"
-            className="order-1 inline-flex w-full items-center justify-center rounded-xl border border-white/10 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10 sm:order-2"
-          >
-            Explore Projects
-          </Link>
-
-          <Link
-            href="/contact"
-            className="order-3 inline-flex items-center justify-center rounded-xl px-6 py-3 text-sm font-medium text-white/70 transition hover:bg-white/5 hover:text-white"
-          >
-            Get in Touch
-          </Link>
-        </div>
       </div>
     </div>
   );

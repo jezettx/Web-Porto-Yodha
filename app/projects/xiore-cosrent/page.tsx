@@ -57,47 +57,44 @@ export default function XioreCosrentProjectPage() {
               </h1>
 
               <p className="mt-3 max-w-2xl text-base leading-relaxed text-white/70 md:text-lg">
-                Built an operating system for cosplay rental: catalog → booking → QC → delivery/event
-                usage → return. The goal was operational clarity and reliable execution, not “feature
-                overload”.
+                Built an operating system for cosplay rental: inventory and catalog management → booking and scheduling → QC inspection → delivery and event support → return and logistics. Designed for operational clarity and reliability over feature bloat, making the entire lifecycle traceable and auditable.
               </p>
 
-              {/* tags */}
-              <div className="mt-4 flex flex-wrap gap-2">
-                {tags.map((t) => (
-                  <span
-                    key={t}
-                    className="rounded-full bg-white/10 px-3 py-1 text-xs text-white/75"
-                  >
-                    {t}
-                  </span>
-                ))}
-              </div>
-
-              {/* instagram link */}
-              <div className="mt-4">
-                <a
-                  href="https://www.instagram.com/xiore.cosrent"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-2 rounded-xl bg-white/10 px-4 py-2 text-sm text-white/80 transition hover:bg-white/15 hover:text-white"
-                >
-                  Instagram →
-                </a>
-              </div>
             </div>
 
-            {/* NOTE: desktop logo bener-bener di kanan */}
-            <div className="hidden md:block">
+            {/* NOTE: desktop logo di kanan */}
+            <div className="hidden md:flex md:justify-end">
               <Image
                 src="/assets/LogoXiore.png"
                 alt="Xiore Cosrent"
-                width={80}
-                height={80}
-                className="h-50 w-50 rounded-xl object-contain opacity-90 drop-shadow-lg"
+                width={160}
+                height={160}
+                className="h-40 w-40 rounded-xl object-contain opacity-90 drop-shadow-lg"
                 priority
               />
             </div>
+          </div>
+
+          {/* tags + button */}
+          <div className="mt-4 flex flex-wrap items-end justify-between gap-4">
+            <div className="flex flex-wrap gap-2">
+              {tags.map((t) => (
+                <span
+                  key={t}
+                  className="rounded-full bg-white/10 px-3 py-1 text-xs text-white/75"
+                >
+                  {t}
+                </span>
+              ))}
+            </div>
+            <a
+              href="https://www.instagram.com/xiore.cosrent"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/75 transition hover:bg-white/10 hover:text-white"
+            >
+              Instagram →
+            </a>
           </div>
         </header>
 
